@@ -23,6 +23,59 @@
             </li>
           </ul>
         </div>
-      </nav>   
+      </nav>  
+      <div class="forum"> 
+        <form id="form1" name="form1" method="post" action="insert2.php" enctype="multipart/form-data">
+          商品名稱:<input type="text"  size="10" name="name" id="textfield" />
+          價格:<input type="text"  size="10" name="price" id="textfield" />
+          類型:<input type="text" size="10" name="TYPE" id="textfield" />
+          test:<input list="Difficulty" size="10" name="Difficulty" id="textfield" />
+                  <datalist id="Difficulty">
+                      <option value="EASY">
+                      <option value="NORMAL">
+                  </datalist>
+                  <button class="btn btn-primary mt-1" v-on:click="add">新增</button>
+      </form>
+        <!-- 資料表格 -->
+        <table border=1 width=800 cellpadding=5>
+            <tr>
+                <td style="font-size: 120%;color: blue;text-align: center">商品名稱</td>
+                <td style="font-size: 120%;color: blue;text-align: center">價格</td>
+                <td style="font-size: 120%;color: blue;text-align: center">類型</td>
+            </tr>
+            <!--提取資料 -->
+            <tr>
+                <td>test</td>
+                <td style="text-align: center">test</td>
+                <td style="text-align: center">test</td>
+                <td style="text-align: center"><a href="">修改</a></td> 
+                <td style="text-align: center"><a href="">刪除</a></td>
+            </tr>
+            </table>
+        
+        <form method="POST" action="">
+        <input type="submit" value="回到開始畫面"/>
+      </form>
+      </div>
+
+      <script>
+
+        var app = new Vue({
+          el: '#app',
+          data: {
+            name: '',
+            newname: '',
+            price:'',
+            newprice:'',
+            type:'',
+            newtype:''
+          },
+          methods:{
+            add: function(){
+              this.newname = this.name;
+            }
+          }
+        });
+        </script>
 </body>
 </html>
