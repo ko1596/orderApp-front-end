@@ -1,0 +1,104 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="UTF-8"> 
+<title>Vue.js小demo</title> 
+<link rel="stylesheet" href="css/bootstrap.min.css"> 
+</head> 
+<body> 
+<!-- 這是我們的view --> 
+<div class="col-md-6"> 
+<div class="panel panel-default" id="app" > 
+<div class="panel-body form-horizontal"> 
+<div class="form-group"> 
+<label class="col-md-2 control-label">Name：</label> 
+<div class="col-md-10"> 
+<input type="text" class="form-control" v-model="newPerson.name"/> 
+</div> 
+</div> 
+<div class="form-group"> 
+<label class="col-md-2 control-label">Age：</label> 
+<div class="col-md-10"> 
+<input type="text" class="form-control" v-model="newPerson.age"> 
+</div> 
+</div> 
+<div class="form-group"> 
+<label class="col-md-2 control-label">Sex：</label> 
+<div class="col-md-10"> 
+<select class="form-control" v-model="newPerson.sex"> 
+<option value="Male">Male</option> 
+<option value="Female">Female</option> 
+</select> 
+</div> 
+</div> 
+<div class="form-group"> 
+<label for=""></label> 
+<button class="col-md-offset-2" @click="createPerson">Create</button> 
+</div> 
+</div>  
+<div class="panel-body"> 
+<table class="table text-center"> 
+<thead> 
+<tr > 
+<th class="text-center">Name</th> 
+<th class="text-center">Age</th> 
+<th class="text-center">Sex</th> 
+<th class="text-center">Delete</th> 
+</tr> 
+</thead> 
+<tbody> 
+<tr v-for="person in people"> 
+<td>{{ person.name }}</td> 
+<td>{{ person.age }}</td> 
+<td>{{ person.sex }}</td> 
+<td><button @click="deletePerson($index)">Delete</button></td> 
+</tr> 
+</tbody> 
+</table> 
+</div> 
+</div> 
+</div> 
+</body> 
+<script src="js/vue.js"></script> 
+<script> 
+//建立一個Vue例項或"ViewModel",它連線view與model 
+var vm = new Vue({ 
+el: '#app', 
+data: { 
+newPerson: { 
+name: '', 
+age: 0, 
+sex: 'Male' 
+}, 
+people: [{ 
+name: 'Jack', 
+age: 30, 
+sex: 'Male' 
+}, { 
+name: 'Bill', 
+age: 26, 
+sex: 'Male' 
+}, { 
+name: 'Tracy', 
+age: 22, 
+sex: 'Female' 
+}, { 
+name: 'Chris', 
+age: 36, 
+sex: 'Male' 
+}] 
+}, 
+methods:{ 
+createPerson: function(){ 
+this.people.push(this.newPerson); 
+// 新增完newPerson物件後，重置newPerson物件 
+this.newPerson = {name: '', age: 0, sex: 'Male'} 
+}, 
+deletePerson: function(index){ 
+// 刪一個陣列元素 
+this.people.splice(index,1); 
+} 
+} 
+}) 
+</script> 
+</html> 

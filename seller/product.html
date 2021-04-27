@@ -2,15 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/stylesheets/all.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/regular.js" integrity="sha384-t7yHmUlwFrLxHXNLstawVRBMeSLcXTbQ5hsd0ifzwGtN7ZF7RZ8ppM7Ldinuoiif" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script>    <script src="/javascripts/vendor.js"></script>
-
+    <link rel="stylesheet" href="../stylesheets/bootstrap.min.css">  
     <title>上下架</title>
 </head>
-<body class="all">
+<body class="col-md-6">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <a class="navbar-brand" >訂餐系統</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,63 +14,94 @@
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="/seller/product.html">商品上下架</a>
+              <a class="nav-link" href="../seller/product.html">商品上下架</a>
             </li>
           </ul>
         </div>
       </nav>  
-      <div class="forum"> 
-        <form id="form1" name="form1" method="post" action="insert2.php" enctype="multipart/form-data">
-          商品名稱:<input type="text"  size="10" name="name" id="textfield" />
-          價格:<input type="text"  size="10" name="price" id="textfield" />
-          類型:<input type="text" size="10" name="TYPE" id="textfield" />
-          test:<input list="Difficulty" size="10" name="Difficulty" id="textfield" />
-                  <datalist id="Difficulty">
-                      <option value="EASY">
-                      <option value="NORMAL">
-                  </datalist>
-                  <button class="btn btn-primary mt-1" v-on:click="add">新增</button>
-      </form>
+      <div class="col-md-6">  
+        <div class="panel panel-default" id="app" >  
+          <div class="panel-body form-horizontal"> 
+            <div class="form-group">  
+              <label class="col-md-2 control-label">商品名稱: </label>  
+              <div class="col-md-10">  
+                  <input type="text" class="form-control" v-model="nproduct.name"/>  
+              </div>  
+          </div>  
+          <div class="form-group">  
+              <label class="col-md-2 control-label">價格: </label>  
+              <div class="col-md-10">  
+                  <input type="text" class="form-control" v-model="nproduct.price">  
+              </div>  
+          </div>  
+          <div class="form-group">  
+              <label class="col-md-2 control-label">類型: </label>  
+              <div class="col-md-10">
+                <input type="text" class="form-control" v-model="nproduct.type">     
+              </div>  
+              <!-- test:<input list="Difficulty" size="10" name="Difficulty" id="textfield" />
+                      <datalist id="Difficulty">
+                          <option value="EASY">
+                          <option value="NORMAL">
+                      </datalist>-->
+          <div class="form-group">  
+              <label for=""></label>  
+              <button class="col-md-offset-2" @click="addproduct">新增</button>  
+          </div>   
         <!-- 資料表格 -->
-        <table border=1 width=800 cellpadding=5>
-            <tr>
-                <td style="font-size: 120%;color: blue;text-align: center">商品名稱</td>
-                <td style="font-size: 120%;color: blue;text-align: center">價格</td>
-                <td style="font-size: 120%;color: blue;text-align: center">類型</td>
-            </tr>
-            <!--提取資料 -->
-            <tr>
-                <td>test</td>
-                <td style="text-align: center">test</td>
-                <td style="text-align: center">test</td>
-                <td style="text-align: center"><a href="">修改</a></td> 
-                <td style="text-align: center"><a href="">刪除</a></td>
-            </tr>
-            </table>
+        <div class = "panel-body">
+          <table class="table text-center">
+            <thead>
+              <tr>
+                  <th class="text-center">商品名稱</td>
+                  <th class="text-center">價格</td>
+                  <th class="text-center">類型</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="product in products">
+                  <td>{{product.name}}</td>
+                  <td>{{product.price}}</td>
+                  <td>{{product.type}}</td>
+                  <td><button @click="deleteProduct($index)">刪除</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         
         <form method="POST" action="">
         <input type="submit" value="回到開始畫面"/>
       </form>
       </div>
-
-      <script>
-
-        var app = new Vue({
-          el: '#app',
-          data: {
-            name: '',
-            newname: '',
-            price:'',
-            newprice:'',
-            type:'',
-            newtype:''
-          },
-          methods:{
-            add: function(){
-              this.newname = this.name;
-            }
-          }
-        });
-        </script>
+        </div>
+      </div>
+    </div>
 </body>
+<script src="../js/product.js"></script>  
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      nproduct:{
+        name: '',
+        price: '',
+        type: ''
+      },
+      products:[{
+        name: 'test',
+        price: 'test',
+        type: 'test'
+      }]
+    },
+    methods:{
+      addproduct: function(){
+        this.products.push(this.nproduct); 
+        this.nproduct = {name: '', price: '', type: ''}
+      },
+      deleteProduct: function(index){    
+                    this.products.splice(index,1);  
+      }  
+    }  
+  })
+  </script>
 </html>
