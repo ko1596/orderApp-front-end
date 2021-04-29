@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../stylesheets/bootstrap.min.css">  
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <title>上下架</title>
 </head>
 <body class="col-md-6">
@@ -69,8 +71,7 @@
           </table>
         </div>
         
-        <form method="POST" action="">
-        <input type="submit" value="回到開始畫面"/>
+        <button class="col-md-offset-2" @click="doneproduct">上傳</button>
       </form>
       </div>
         </div>
@@ -99,9 +100,39 @@
         this.nproduct = {name: '', price: '', type: ''}
       },
       deleteProduct: function(index){    
-                    this.products.splice(index,1);  
-      }  
+        this.products.splice(index,1);  
+      },
+      doneproduct: function(){
+        // axios.get('http://118.150.129.183:8080/')
+        // .then(function (response) {
+        //   console.log(response);
+        // })
+        // .catch(function (error) {
+        //   console.log(error);
+        // });
+        // axios.post('http://118.150.129.183:8080/login', {
+        //   params: {
+        //     account:"qwdfst",
+        //     password:"456"
+        //   }
+        // })
+        // .catch(function (error) {
+        //   console.log(error);
+        // });
+          $.post("http://118.150.129.183:8080/login",
+          {
+            account:"redsesdgfa",
+            password:"456"
+          })
+          .done(function(){
+            alert("登入成功")
+          })
+          .fail(function(){
+            alert("登入失敗")
+          });
+      }
     }  
   })
+
   </script>
 </html>
