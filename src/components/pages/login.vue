@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form class="form-signin">
+    <form class="form-signin" @submit.prevent="signin">
       <h1 class="h3 mb-3 font-weight-normal">請先登入</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
       <input
@@ -8,6 +8,7 @@
         id="inputEmail"
         class="form-control"
         placeholder="Email address"
+        v-model="user.username"
         required
         autofocus
       />
@@ -17,6 +18,7 @@
         id="inputPassword"
         class="form-control"
         placeholder="Password"
+        v-model="user.password"
         required
       />
       <div class="checkbox mb-3">
@@ -37,14 +39,28 @@ export default {
   name: "HelloWorld",
   data() {
     return {
-      msg: "Welcome to Your Vue.js App",
+      user: {
+        username: '',
+        password: '',
+      },
     };
+  },
+  methods: {
+    signin() {
+      const api = `${process.env.APIPATH}/signin`;
+      //"https://vue-course-api.hexschool.io/api/signin"
+      const vn = this;
+
+      this.$http.post(api, vn.user).then((response) => {
+        console.log(response.data);
+      });
+    },
   },
 };
 </script>
 
 <style scoped>
-    html,
+html,
 body {
   height: 100%;
 }
