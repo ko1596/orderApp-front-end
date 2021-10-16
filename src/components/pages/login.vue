@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     signin() {
-      const api = `${process.env.APIPATH}/signin`;
+      const api = "https://192.168.1.191:8080/api/Login";
       //"https://vue-course-api.hexschool.io/api/signin"
       const vn = this;
 
