@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     signin() {
-      const api = `${process.env.APIPATH}/signin`;
+      const api = `${process.env.APIPATH}/admin/signin`;
       //"https://vue-course-api.hexschool.io/api/signin"
       const vn = this;
 
