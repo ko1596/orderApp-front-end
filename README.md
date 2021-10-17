@@ -51,7 +51,7 @@ npm uninstall bootstrap node-sass sass-loader
 npm install bootstrap@4 node-sass@4 sass-loader@7
 ```
 
-## 要在router轉址前把tolen和到期日傳進去
+## 要在router轉址前把token和到期日傳進去
 
 ### 解決新版本無法使用登入問題
 

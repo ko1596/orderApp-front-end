@@ -3,6 +3,8 @@
 import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios' //第三方套件放上面
+import 'bootstrap';
+
 import App from './App'
 import router from './router'
 
