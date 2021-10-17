@@ -48,11 +48,13 @@ export default {
   methods: {
     signin() {
       const api = `${process.env.APIPATH}/admin/signin`;
-      //"https://vue-course-api.hexschool.io/api/signin"
-      const vn = this;
+      const vm = this;
 
-      this.$http.post(api, vn.user).then((response) => {
+      this.$http.post(api, vm.user).then((response) => {
         console.log(response.data);
+        if (response.data.success) {
+            vm.$router.push('/');
+        }
       });
     },
   },
