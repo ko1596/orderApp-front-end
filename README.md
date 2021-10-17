@@ -1,8 +1,22 @@
 # order-app-front-end
 
 > A Vue.js project
+> 相關markdown語法教學 [手冊](https://guides.github.com/features/mastering-markdown/)
 
 ## Build Setup
+
+### Vue init 的設定檔參考
+
+``` bash
+? Vue build standalone
+? Install vue-router? Yes
+? Use ESLint to lint your code? Yes # 可選擇 No
+? Pick an ESLint preset Airbnb.     # 選擇 No，此項目則跳過
+? Set up unit tests No
+? Setup e2e tests with Nightwatch? No
+```
+
+### 建置專案
 
 ``` bash
 # install dependencies
@@ -30,9 +44,11 @@ For a detailed explanation on how things work, check out the [guide](https://www
 ## 安裝bootstrap
 
 ``` bash
+# 如果不小心用到新的版本可以用下列指令移除
+npm uninstall bootstrap node-sass sass-loader
+
 # 安裝bootstrap本體 因為版本比較舊
 npm install bootstrap@4 node-sass@4 sass-loader@7
-
 ```
 
 ## 要在router轉址前把tolen和到期日傳進去
@@ -44,5 +60,6 @@ const token = response.data.token;
 const expired = response.data.expired;
 console.log(token, expired);
 document.cookie = `hexToken=${token}; expires=${new Date(expired)};`;
-vm.$router.push('/admin/products');
+//轉址之前
+vm.$router.push('/admin/products');     
 ```
