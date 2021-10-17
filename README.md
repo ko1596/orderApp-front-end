@@ -35,4 +35,14 @@ npm install bootstrap@4 node-sass@4 sass-loader@7
 
 ```
 
-安裝sass框架
+## 要在router轉址前把tolen和到期日傳進去
+
+### 解決新版本無法使用登入問題
+
+``` javascript
+const token = response.data.token;
+const expired = response.data.expired;
+console.log(token, expired);
+document.cookie = `hexToken=${token}; expires=${new Date(expired)};`;
+vm.$router.push('/admin/products');
+```
