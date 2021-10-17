@@ -8,7 +8,7 @@
         id="inputEmail"
         class="form-control"
         placeholder="Email address"
-        v-model="user.username"
+        v-model="user.email"
         required
         autofocus
       />
@@ -40,17 +40,17 @@ export default {
   data() {
     return {
       user: {
-        username: '',
+        email: '',
         password: '',
       },
     };
   },
   methods: {
     signin() {
-      const api = "https://192.168.1.191:8080/api/Login";
+      const api = "http://192.168.0.191:8080/api/Login";
       //"https://vue-course-api.hexschool.io/api/signin"
       const vn = this;
-
+    console.log(vn.user);
       this.$http.post(api, vn.user).then((response) => {
         console.log(response.data);
       });
