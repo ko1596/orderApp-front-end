@@ -13,7 +13,7 @@
           <th width="120">原價</th>
           <th width="120">售價</th>
           <th width="80">是否啟用</th>
-          <th width="80">編輯</th>
+          <th width="120">編輯</th>
         </tr>
       </thead>
       <tbody>
@@ -32,6 +32,7 @@
           </td>
           <td>
             <button class="btn btn-outline-primary btn-sm" @click="openModal(false, item)">編輯</button>
+            <button class="btn btn-outline-danger btn-sm" @click="openDelProductModal(item)">刪除</button>
           </td>
         </tr>
       </tbody>
@@ -83,6 +84,7 @@
                     id="customFile"
                     class="form-control"
                     ref="files"
+                    @change="uploadFile"
                   />
                 </div>
                 <img
@@ -244,7 +246,7 @@
             >
               取消
             </button>
-            <button type="button" class="btn btn-danger">確認刪除</button>
+            <button type="button" class="btn btn-danger" @click="deleteProduct">確認刪除</button>
           </div>
         </div>
       </div>
@@ -304,6 +306,48 @@ export default {
           }
         //   vm.products = response.data.products;
       });
+    },
+    openDelProductModal(item) {
+      const vm = this;
+      $('#delProductModal').modal('show');
+      vm.tempProduct = Object.assign({}, item);
+    },
+    deleteProduct() {
+        
+        const vm = this;
+        let api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/product/${vm.tempProduct.id}`;
+        this.$http.delete(api, { data: vm.tempProduct }).then((response) => {
+          console.log(response.data);
+          console.log(api)
+          if(response.data.success) {
+              vm.getProducts();
+          } else {
+              vm.getProducts();
+              console.log("刪除失敗");
+          }
+        //   vm.products = response.data.products;
+      });
+      $('#delProductModal').modal('hide');
+    },
+    uploadFile() {
+        console.log(this);
+        const uploadedFile = this.$refs.files.files[0];
+        const vm = this;
+        const formData = new FormData();
+        formData.append('file-to-upload', uploadedFile);
+        const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/upload`;
+        this.$http.post(url, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+        }).then((response) => {
+            console.log(response.data);
+            if (response.data.success) {
+                // vm.tempProduct.imageUrl = response.data.imageUrl;
+                // console.log(vm.tempProduct);
+                vm.$set(vm.tempProduct, 'imageUrl', response.data.imageUrl);
+            }
+        })
     },
   },
   created() {
