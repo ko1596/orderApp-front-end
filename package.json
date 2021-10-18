@@ -18,6 +18,7 @@
     "sass-loader": "^7.3.1",
     "vue": "^2.5.2",
     "vue-axios": "^3.3.7",
+    "vue-loading-overlay": "^3.0.1",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
