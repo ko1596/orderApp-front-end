@@ -2,34 +2,34 @@
   <div>
     <form class="form-signin" @submit.prevent="signin">
       <h1 class="h3 mb-3 font-weight-normal">請先登入</h1>
-      <label for="inputEmail" class="sr-only">Email address</label>
+      <label for="inputEmail" class="sr-only">Email</label>
       <input
         type="email"
         id="inputEmail"
         class="form-control"
-        placeholder="Email address"
+        placeholder="請輸入 Email"
         v-model="user.username"
         required
         autofocus
       />
-      <label for="inputPassword" class="sr-only">Password</label>
+      <label for="inputPassword" class="sr-only">密碼</label>
       <input
         type="password"
         id="inputPassword"
         class="form-control"
-        placeholder="Password"
+        placeholder="請輸入 密碼"
         v-model="user.password"
         required
       />
       <div class="checkbox mb-3">
         <label>
-          <input type="checkbox" value="remember-me" /> Remember me
+          <input type="checkbox" value="remember-me" /> 記住我
         </label>
       </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
-        Sign in
+        登入
       </button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+      <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
     </form>
   </div>
 </template>
