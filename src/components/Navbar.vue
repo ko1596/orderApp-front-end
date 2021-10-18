@@ -1,8 +1,11 @@
 <template>
   <div>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-        <i class="far fa-lemon"></i>
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">訂餐APP</a>
+
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">        
+          <i class="fas fa-pizza-slice"></i>
+          訂餐APP
+        </a>
       <input
         class="form-control form-control-dark w-100"
         type="text"
