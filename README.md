@@ -63,3 +63,19 @@ document.cookie = `hexToken=${token}; expires=${new Date(expired)};`;
 //轉址之前
 vm.$router.push('/admin/products');     
 ```
+
+## 安裝載入動畫套件
+
+``` bash
+# 在Vue-cli2.0必須安裝舊版本的
+npm install vue-loading-overlay@^3.0 
+```
+
+## font awesome CDN
+
+``` html
+<!-- 該段程式碼加在index.html -->
+<!-- font awesome v5.10.0 -->
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+```
