@@ -126,6 +126,9 @@
         </div>
       </div>
     </div>
+
+    <Pagination :pagination-from-products="pagination" @trigger="getProducts" />
+
     <div class="my-5 row justify-content-center">
       <div class="my-5 row justify-content-center">
         <table class="table">
@@ -148,9 +151,9 @@
               </td>
               <td class="align-middle">
                 {{ item.product.title }}
-                <!-- <div class="text-success" v-if="item.coupon">
+                <div class="text-success" v-if="item.coupon">
                   已套用優惠券
-                </div> -->
+                </div>
               </td>
               <td class="align-middle">
                 {{ item.qty }}/{{ item.product.unit }}
@@ -165,12 +168,31 @@
               <td colspan="3" class="text-right">總計</td>
               <td class="text-right">{{ cart.total | currency }}</td>
             </tr>
-            <tr v-if="cart.final_total">
+            <tr v-if="cart.final_total !== cart.total">
               <td colspan="3" class="text-right text-success">折扣價</td>
-              <td class="text-right text-success">{{ cart.final_total | currency }}</td>
+              <td class="text-right text-success">
+                {{ cart.final_total | currency }}
+              </td>
             </tr>
           </tfoot>
         </table>
+        <div class="input-group mb-3 input-group-sm">
+          <input
+            type="text"
+            class="from-control"
+            v-model="coupon_code"
+            placeholder="請輸入優惠碼"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              @click="addCouponCode"
+            >
+              套用優惠碼
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -178,28 +200,36 @@
 
 <script>
 import $ from "jquery";
+import Pagination from '@/components/Pagination'
 
 export default {
+  components: {
+    Pagination,
+  },
   data() {
     return {
       products: [],
       product: {},
+      pagination: {},
       status: {
-        loadingItem: "",
+        loadingItem: '""',
       },
       cart: {},
       isLoading: false,
+      coupon_code: '',
     };
   },
+  
   methods: {
-    getProducts() {
+    getProducts(page = 1) {
       const vm = this;
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products`;
+      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products?page=${page}`;
       vm.isLoading = true;
       this.$http.get(url).then((response) => {
-        vm.products = response.data.products;
         console.log(response);
+        vm.products = response.data.products;
         vm.isLoading = false;
+        vm.pagination = response.data.pagination;
       });
     },
     getProduct(id) {
@@ -243,13 +273,26 @@ export default {
     removeCartItem(id) {
       const vm = this;
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart/${id}`;
-        vm.isLoading = true;
+      vm.isLoading = true;
       this.$http.delete(url).then((response) => {
         // vm.products = response.data.products;
         // vm.cart = response.data.data;
         console.log(response);
         vm.isLoading = false;
         vm.getCart();
+      });
+    },
+    addCouponCode() {
+      const vm = this;
+      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/coupon`;
+      const coupon = {
+        code: vm.coupon_code,
+      };
+      vm.isLoading = true;
+      this.$http.post(url, { data: coupon }).then((response) => {
+        // vm.products = response.data.products;
+        console.log(response);
+        vm.isLoading = false;
       });
     },
   },
