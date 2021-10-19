@@ -6,6 +6,7 @@ import ForgotPassword from '@/components/pages/forgotpassword'
 import Products from '@/components/pages/products'
 import Coupons from '@/components/pages/Coupons';
 import Orders from '@/components/pages/Orders';
+import OrderInfoCheck from '@/components/pages/orderinfocheck';
 import Dashboard from '@/components/dashboard'
 import CustomerOrder from '@/components/pages/customerorders'
 import CustomerCheckout from '@/components/pages/customercheckout'
@@ -75,6 +76,11 @@ export default new Router({
           path: 'customer_checkout/:orderId',
           name: 'CustomerCheckout',
           component: CustomerCheckout,
+        },
+        {
+          path: 'order_info_check',
+          name: 'OrderInfoCheck',
+          component: OrderInfoCheck,
         },
       ],
     },

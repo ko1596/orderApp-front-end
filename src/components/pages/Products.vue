@@ -7,7 +7,13 @@
         建立新產品
       </button>
     </div>
-    <table class="table mt-4">
+    <div class="card shadow mb-4 mt-4">
+    <div class="card-header py-3">
+       <h6 class="m-0 font-weight-bold text-primary">產品列表</h6>
+    </div>
+    <div class="card-body">
+    <div class="table-responsive">
+    <table class="table">
       <thead>
         <tr>
           <th width="120">分類</th>
@@ -49,8 +55,16 @@
         </tr>
       </tbody>
     </table>
+    </div>
+    </div>
+    </div>
+
+    
 
     <Pagination :pagination-from-products="pagination" @trigger="getProducts" />
+
+    
+
 
     <!-- Modal -->
     <div
