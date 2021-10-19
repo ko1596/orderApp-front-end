@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pt-4 pb-4 bg-gradient-primary">
     <!-- <form class="form-signin" @submit.prevent="signin">
       <h1 class="h3 mb-3 font-weight-normal">請先登入</h1>
       <label for="inputEmail" class="sr-only">Email</label>
@@ -79,10 +79,10 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.html">忘記密碼?</a>
+                                        <router-link to="/forgotpassword" class="small">忘記密碼?</router-link>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="register.html">註冊帳號!</a>
+                                        <router-link to="/register" class="small">註冊帳號!</router-link>
                                     </div>
                                 </div>
                             </div>

@@ -1,11 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/pages/login'
+import Register from '@/components/pages/register'
+import ForgotPassword from '@/components/pages/forgotpassword'
 import Products from '@/components/pages/products'
 import Coupons from '@/components/pages/Coupons';
 import Orders from '@/components/pages/Orders';
 import Dashboard from '@/components/dashboard'
 import CustomerOrder from '@/components/pages/customerorders'
+import CustomerCheckout from '@/components/pages/customercheckout'
 
 Vue.use(Router)
 
@@ -19,6 +22,16 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login,
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register,
+    },
+    {
+      path: '/forgotpassword',
+      name: 'ForgotPassword',
+      component: ForgotPassword,
     },
     {
       path: '/admin',
@@ -57,6 +70,11 @@ export default new Router({
           path: 'customer_order',
           name: 'CustomerOrder',
           component: CustomerOrder,
+        },
+        {
+          path: 'customer_checkout/:orderId',
+          name: 'CustomerCheckout',
+          component: CustomerCheckout,
         },
       ],
     },
