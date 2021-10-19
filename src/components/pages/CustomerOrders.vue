@@ -2,7 +2,7 @@
   <div>
     <loading :active.sync="isLoading"></loading>
     <div class="row mt-4">
-      <div class="col-md-3 col-lg-2 mb-4" v-for="item in products" :key="item.id">
+      <div class="col-md-4 col-lg-3 mb-4" v-for="item in products" :key="item.id">
         <div class="card border-0 shadow-sm">
           <div
             style="
@@ -292,6 +292,7 @@ export default {
       this.$http.post(url, { data: coupon }).then((response) => {
         // vm.products = response.data.products;
         console.log(response);
+        vm.getCart();
         vm.isLoading = false;
       });
     },

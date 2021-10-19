@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form class="form-signin" @submit.prevent="signin">
+    <!-- <form class="form-signin" @submit.prevent="signin">
       <h1 class="h3 mb-3 font-weight-normal">請先登入</h1>
       <label for="inputEmail" class="sr-only">Email</label>
       <input
@@ -30,8 +30,73 @@
         登入
       </button>
       <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
-    </form>
+    </form> -->
+     <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">歡迎回來!</h1>
+                                    </div>
+                                    <form class="user" @submit.prevent="signin">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control form-control-user"
+                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                placeholder="請輸入 Email..."
+                                                v-model="user.username">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control form-control-user"
+                                                id="exampleInputPassword" placeholder="請輸入 密碼..."
+                                                v-model="user.password">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <label class="custom-control-label" for="customCheck">記住我</label>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-lg btn-primary btn-block btn-user" type="submit">
+                                          登入
+                                        </button>
+                                        <hr>
+                                        <a href="index.html" class="btn btn-google btn-user btn-block">
+                                            <i class="fab fa-google fa-fw"></i> 使用 Google 登入
+                                        </a>
+                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                            <i class="fab fa-facebook-f fa-fw"></i> 使用 Facebook 登入
+                                        </a>
+                                    </form>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="forgot-password.html">忘記密碼?</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" href="register.html">註冊帳號!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
   </div>
+  
 </template>
 
 <script>
