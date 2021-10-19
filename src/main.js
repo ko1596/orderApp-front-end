@@ -3,9 +3,12 @@
 import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios' //第三方套件放上面
+import VeeValidate from 'vee-validate';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 import 'bootstrap';
+import zhTWValidate from 'vee-validate/dist/locale/zh_TW'
+import VueI18n from 'vue-i18n';Vue.use(VueI18n);
 
 
 import App from './App';
@@ -14,8 +17,15 @@ import './bus';
 import currencyFilter from './filters/currency';
 import dateFilter from './filters/date';
 
-Vue.config.productionTip = false
-Vue.use(VueAxios, axios)
+Vue.config.productionTip = false;
+Vue.use(VueAxios, axios);
+
+VeeValidate.Validator.localize('zh_TW', zhTWValidate);
+Vue.use(VeeValidate,{
+  events: 'input|blur'}
+ );
+
+ 
 
 Vue.component('Loading', Loading);
 Vue.filter('currency', currencyFilter);

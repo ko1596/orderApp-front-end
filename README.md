@@ -79,3 +79,17 @@ npm install vue-loading-overlay@^3.0
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 ```
+
+## 安裝vee-validate
+
+### 安裝
+
+``` bash
+npm install vee-validate@2.2.15 --save
+```
+
+### 引用
+
+``` javascript
+import VeeValidate from 'vee-validate';
+```
